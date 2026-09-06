@@ -2,23 +2,20 @@
 #![warn(clippy::nursery)]
 
 use std::io::{BufRead};
+use std::collections::{HashSet};
 
 fn main() {
     let stdin = std::io::stdin();
     let mut it = stdin.lock().lines();
     let s = it.next().unwrap().unwrap();
     //let n: i32 = it.next().unwrap().unwrap().trim().parse().unwrap();
-    let nums: Vec<i64> = s.split_whitespace()
-        .map(|s| s.parse().unwrap())
-        .collect();
+    let mut seen: HashSet<&str> = HashSet::new();
     
-    let mut max = nums.get(0).unwrap();
-
-    for n in &nums {
-        if n > max {
-            max = n;
-        }
+    for n in s.split_whitespace() {
+        seen.insert(n);
     }
 
-    println!("{}", max);
+    let d = seen.len();
+
+    println!("{}", d);
 }
