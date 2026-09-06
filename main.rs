@@ -4,8 +4,6 @@
 use std::io::{BufRead};
 use std::collections::HashMap;
 
-use crate::Light::{Green, Red, Yellow};
-
 fn main() {
     let stdin = std::io::stdin();
     let mut it = stdin.lock().lines();
@@ -14,30 +12,18 @@ fn main() {
     //let nums: Vec<_> = it.map(|s| s.unwrap().trim().parse::<i32>().unwrap())
     //    .collect();
 
-    let c = match s.trim() {
-        "red" => Red,
-        "yellow" => Yellow,
-        _ => Green
-    };
-    
-    println!("{}", name(&next(c)));
-}
-
-enum Light {
-    Red, Yellow, Green
-}
-
-fn next(l: Light) -> Light {
-    match l {
-        Light::Red => Light::Green,
-        Light::Green => Light::Yellow,
-        Light::Yellow => Light::Red,
+    match parse_int(&s) {
+        Ok(n) => println!("ok: {}", n),
+        Err(e) => println!("error: {}", e),
     }
 }
-fn name(l: &Light) -> &str {
-    match l {
-        Light::Red => "red",
-        Light::Yellow => "yellow",
-        Light::Green => "green",
+
+
+fn parse_int(s: &str) -> Result<i32, String> {
+    let n = s.trim().parse::<i32>();
+
+    match n {
+        Ok(nn) => Ok(nn),
+        Err(e) => Err("not a number".to_string())
     }
 }
