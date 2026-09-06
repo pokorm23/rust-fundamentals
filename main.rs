@@ -6,8 +6,16 @@ use std::io::{BufRead};
 fn main() {
     let stdin = std::io::stdin();
     let mut it = stdin.lock().lines();
-    let name = it.next().unwrap().unwrap();
-    let age: i32 = it.next().unwrap().unwrap().trim().parse().unwrap();
+    let n: i32 = it.next().unwrap().unwrap().trim().parse().unwrap();
 
-    println!("Hi, {}! You are {} years old.", name, age);
+    let ns = n.to_string();
+    let s = match (n % 3, n % 5) {
+        (0, 0) => "FizzBuzz",
+        (0, _) => "Fizz",
+        (_, 0) => "Buzz",
+        _ => &ns
+    };
+
+    println!("{}", s);
 }
+ 
