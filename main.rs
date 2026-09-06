@@ -8,14 +8,11 @@ fn main() {
     let mut it = stdin.lock().lines();
     let n: i32 = it.next().unwrap().unwrap().trim().parse().unwrap();
 
-    let ns = n.to_string();
-    let s = match (n % 3, n % 5) {
-        (0, 0) => "FizzBuzz",
-        (0, _) => "Fizz",
-        (_, 0) => "Buzz",
-        _ => &ns
-    };
+    let mut t: i64 = 0;
+    for i in 1..=n {
+        t += i as i64;
+    }
 
-    println!("{}", s);
+    println!("{}", t);
 }
  
