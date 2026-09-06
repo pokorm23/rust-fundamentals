@@ -1,8 +1,13 @@
-use std::io::Read;
+#![warn(clippy::pedantic)]
+#![warn(clippy::nursery)]
+
+use std::io::{BufRead};
 
 fn main() {
-    let mut input = String::new();
-    std::io::stdin().read_to_string(&mut input).unwrap();
+    let stdin = std::io::stdin();
+    let mut it = stdin.lock().lines();
+    let name = it.next().unwrap().unwrap();
+    let age: i32 = it.next().unwrap().unwrap().trim().parse().unwrap();
 
-    println!("{}", input.to_uppercase());
+    println!("Hi, {}! You are {} years old.", name, age);
 }
