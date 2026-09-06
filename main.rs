@@ -8,10 +8,17 @@ fn main() {
     let mut it = stdin.lock().lines();
     let s = it.next().unwrap().unwrap();
     //let n: i32 = it.next().unwrap().unwrap().trim().parse().unwrap();
+    let nums: Vec<i64> = s.split_whitespace()
+        .map(|s| s.parse().unwrap())
+        .collect();
+    
+    let mut max = nums.get(0).unwrap();
 
-    println!("{}", count(&s));
-}
+    for n in &nums {
+        if n > max {
+            max = n;
+        }
+    }
 
-fn count(s: &str) -> usize {
-    s.len()
+    println!("{}", max);
 }
